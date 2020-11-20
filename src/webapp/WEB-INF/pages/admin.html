@@ -36,7 +36,6 @@
             <th>E-mail</th>
             <th>Login</th>
             <th>Password</th>
-            <th>Role</th>
             <th colspan="2">Operation</th>
         </tr>
         </thead>
@@ -48,18 +47,6 @@
             <td th:text="${user.getEmail()}">email</td>
             <td th:text="${user.getUsername()}">login</td>
             <td th:text="${user.getPassword()}">password</td>
-            <td>Roles</td>
-
-<!--                    <td th:each="user : ${user.getAuthorities().toArray()}">-->
-<!--                        <p th:text="user">text</p>-->
-<!--                    </td>-->
-
-
-<!--                    <td>-->
-<!--                        <select th:each="role : ${user.getRoles()}">-->
-<!--                            <option th:text="${role}">option</option>-->
-<!--                        </select>-->
-<!--                    </td>-->
             <td>
                 <form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
                     <input type="submit" value="DELETE">

@@ -72,5 +72,4 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "new";
 	}
-
 }

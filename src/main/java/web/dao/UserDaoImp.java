@@ -1,7 +1,11 @@
 package web.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import web.model.User;
+import web.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,6 +41,7 @@ public class UserDaoImp implements UserDao {
       entityManager.remove(entityManager.find(User.class, (long)id));
    }
 
+   //Success +
    @Override
    public User showUser(int id) {
       return entityManager.find(User.class, (long)id);
@@ -48,11 +53,12 @@ public class UserDaoImp implements UserDao {
       Query query = entityManager.createQuery("FROM User WHERE username = :username");
       query.setParameter("username", username);
       return query.getResultList();
-//      return entityManager.createQuery("FROM User WHERE username = username", User.class).getSingleResult();
    }
 
    @Override
    public User getUserByName(String username) {
       return findUserByUsername(username).get(0);
    }
+
+
 }

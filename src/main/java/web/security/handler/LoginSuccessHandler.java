@@ -1,6 +1,7 @@
 package web.security.handler;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
-        Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (roles.contains("ROLE_ADMIN")) {
-            httpServletResponse.sendRedirect("/admin/"); //Success +
-        } else {
-            httpServletResponse.sendRedirect("/user/"); //Success +
+        for (GrantedAuthority grantedAuthority : authentication.getAuthorities()) {
+            if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                httpServletResponse.sendRedirect("/admin/");
+                break;
+            } else {
+                httpServletResponse.sendRedirect("/user/");
+            }
         }
     }
 }
