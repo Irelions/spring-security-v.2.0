@@ -1,0 +1,9 @@
+web\config\AppConfig.class
+web\config\AppInit.class
+web\security\handler\LoginSuccessHandler.class
+web\config\WebConfig.class
+web\controller\UserController.class
+web\security\SecurityConfig.class
+web\model\Role.class
+web\model\User.class
+web\security\SpringSecurityInitializer.class
